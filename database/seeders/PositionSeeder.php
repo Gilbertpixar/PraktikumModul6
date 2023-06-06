@@ -15,19 +15,16 @@ class PositionSeeder extends Seeder
     {
         DB::table('positions')->insert([
             [
-                'code' => 'FE',
-                'name' => 'Front End Developer',
-                'description' => 'Front End Developer'
+                'code' => 'kg',
+                'name' => 'kilogram',
             ],
             [
-                'code' => 'BE',
-                'name' => 'Back End Developer',
-                'description' => 'Back End Developer'
+                'code' => 'lt',
+                'name' => 'liter',
             ],
             [
-                'code' => 'SA',
-                'name' => 'System Analist',
-                'description' => 'System Analist'
+                'code' => 'pcs',
+                'name' => 'unit',
             ],
         ]);
     }

@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use App\Models\Employee;
+use App\Models\Item;
 use App\Models\Position;
 // use App\Http\Controllers\DB;
 
 
 
-class EmployeeController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,9 +27,9 @@ class EmployeeController extends Controller
         //     left join positions on employees.position_id = positions.id
         // ');
 
-        $employees = Employee::all();
+        $employees = Item::all();
 
-        return view('employee.index', [
+        return view('item.index', [
             'pageTitle' => $pageTitle,
             'employees' => $employees
         ]);
@@ -44,7 +44,7 @@ class EmployeeController extends Controller
         // RAW SQL Query
         $positions = Position::all();
 
-        return view('employee.create', compact('pageTitle', 'positions'));
+        return view('item.create', compact('pageTitle', 'positions'));
     }
 
     /**
@@ -54,15 +54,14 @@ class EmployeeController extends Controller
 {
     $messages = [
         'required' => ':Attribute harus diisi.',
-        'email' => 'Isi :attribute dengan format yang benar',
         'numeric' => 'Isi :attribute dengan angka'
     ];
 
     $validator = Validator::make($request->all(), [
-        'firstName' => 'required',
-        'lastName' => 'required',
-        'email' => 'required|email',
-        'age' => 'required|numeric',
+        'nameItem' => 'required',
+        'priceItem' => 'required|numeric',
+        'descriptionItem' => 'required',
+        'amount' => 'required|numeric',
     ], $messages);
 
     if ($validator->fails()) {
@@ -77,11 +76,11 @@ class EmployeeController extends Controller
     //     'age' => $request->age,
     //     'position_id' => $request->position,
     // ]);
-    $employee = New Employee;
-    $employee->firstname = $request->firstName;
-    $employee->lastname = $request->lastName;
-    $employee->email = $request->email;
-    $employee->age = $request->age;
+    $employee = New Item;
+    $employee->nameitem = $request->nameItem;
+    $employee->priceitem = $request->priceItem;
+    $employee->descriptionitem = $request->descriptionItem;
+    $employee->amount = $request->amount;
     $employee->position_id = $request->position;
     $employee->save();
 
@@ -96,15 +95,15 @@ class EmployeeController extends Controller
     {
         $pageTitle = 'Employee Detail';
 
-    // RAW SQL QUERY Done ke queery builder
-        // $employee = DB::table('employees')
-        //     ->select('employees.*', 'positions.name as position_name')
-        //     ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
-        //     ->where('employees.id', $id)
-        //     ->first();
-        $employee = Employee::find($id);
+    // // // RAW SQL QUERY Done ke queery builder
+    // //     // $employee = DB::table('employees')
+    // //     //     ->select('employees.*', 'positions.name as position_name')
+    // //     //     ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
+    // //     //     ->where('employees.id', $id)
+    // //     //     ->first();
+        $employee = Item::find($id);
 
-        return view('employee.show', compact('pageTitle', 'employee'));
+        return view('item.show', compact('pageTitle', 'employee'));
 
     }
 
@@ -122,9 +121,9 @@ class EmployeeController extends Controller
     //     ->where('employees.id', $id)
     //     ->first();
     $positions = Position::all();
-    $employee = Employee::find($id);
+    $employee = Item::find($id);
 
-    return view('employee.edit', compact('pageTitle', 'employee', 'positions'));
+    return view('item.edit', compact('pageTitle', 'employee', 'positions'));
 }
 
 
@@ -138,15 +137,14 @@ class EmployeeController extends Controller
 {
     $messages = [
         'required' => ':Attribute harus diisi.',
-        'email' => 'Isi :attribute dengan format yang benar',
         'numeric' => 'Isi :attribute dengan angka'
     ];
 
     $validator = Validator::make($request->all(), [
-        'firstName' => 'required',
-        'lastName' => 'required',
-        'email' => 'required|email',
-        'age' => 'required|numeric',
+        'nameItem' => 'required',
+        'priceItem' => 'required|numeric',
+        'descriptionItem' => 'required',
+        'amount' => 'required|numeric',
     ], $messages);
 
     if ($validator->fails()) {
@@ -162,11 +160,11 @@ class EmployeeController extends Controller
     //     'age' => $request->age,
     //     'position_id' => $request->position,
     // ]);
-    $employee = Employee::find($id);
-    $employee->firstname = $request->firstName;
-    $employee->lastname = $request->lastName;
-    $employee->email = $request->email;
-    $employee->age = $request->age;
+    $employee = Item::find($id);
+    $employee->nameitem = $request->nameItem;
+    $employee->priceitem = $request->priceItem;
+    $employee->descriptionitem = $request->descriptionItem;
+    $employee->amount = $request->amount;
     $employee->position_id = $request->position;
     $employee->save();
 
@@ -185,7 +183,7 @@ class EmployeeController extends Controller
         // DB::table('employees')
         //     ->where('id', $id)
         //     ->delete();
-        Employee::find($id)->delete();
+        Item::find($id)->delete();
 
         return redirect()->route('employees.index');
     }

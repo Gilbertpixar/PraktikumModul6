@@ -32,39 +32,39 @@
 
                     <div class="mb-3 text-center">
                         <i class="bi-person-circle fs-1"></i>
-                        <h4>Edit Employee</h4>
+                        <h4>Edit Item</h4>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="firstName" class="form-label">First Name</label>
-                            <input class="form-control @error('firstName') is-invalid @enderror" type="text"
-                                name="firstName" id="firstName" value="{{ $employee->firstname }}">
-                            @error('firstName')
+                            <label for="nameItem" class="form-label">Name</label>
+                            <input class="form-control @error('nameItem') is-invalid @enderror" type="text"
+                                name="nameItem" id="nameItem" value="{{ $employee->nameitem }}">
+                            @error('nameItem')
                                 <div class="alert-danger text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="lastName" class="form-label">Last Name</label>
-                            <input class="form-control @error('lastName') is-invalid @enderror" type="text"
-                                name="lastName" id="lastName" value="{{ $employee->lastname }}">
-                            @error('lastName')
+                            <label for="priceItem" class="form-label">Price</label>
+                            <input class="form-control @error('priceItem') is-invalid @enderror" type="text"
+                                name="priceItem" id="priceItem" value="{{ $employee->priceitem }}">
+                            @error('priceItem')
                                 <div class="alert-danger text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input class="form-control @error('email') is-invalid @enderror" type="text"
-                                name="email" id="email" value="{{ $employee->email }}">
-                            @error('email')
+                            <label for="descriptionItem" class="form-label">Description Item</label>
+                            <input class="form-control @error('descriptionItem') is-invalid @enderror" type="text"
+                                name="descriptionItem" id="descriptionItem" value="{{ $employee->descriptionitem }}">
+                            @error('descriptionItem')
                                 <div class="alert-danger text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="age" class="form-label">Age</label>
-                            <input class="form-control @error('age') is-invalid @enderror" type="text" name="age"
-                                id="age" value="{{ $employee->age }}">
-                            @error('age')
+                            <label for="amount" class="form-label">Amount</label>
+                            <input class="form-control @error('amount') is-invalid @enderror" type="text" name="amount"
+                                id="amount" value="{{ $employee->amount }}">
+                            @error('amount')
                                 <div class="alert-danger text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -83,11 +83,11 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6 d-grid">
-                            <a href="{{ route('employees.index') }}" class="btn btn-outline-dark btn-lg mt-3"><i
+                            <a href="{{ route('employees.index') }}" class="btn btn-outline-secondary btn-lg mt-3"><i
                                     class="bi-arrow-left-circle me-2"></i> Cancel</a>
                         </div>
                         <div class="col-md-6 d-grid">
-                            <button type="submit" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i>
+                            <button type="submit" class="btn btn-secondary btn-lg mt-3"><i class="bi-check-circle me-2"></i>
                                 Save</button>
                         </div>
                     </div>
